@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import api from '../services/api';
+import Login from './Login';
 
 function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [message, setMessage] = useState('');
+  const [l,setL]=useState(false);
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -13,6 +15,8 @@ function Register() {
       const res = await api.post('/users/register', form);
       localStorage.setItem('token', res.data.token);
       setMessage('Registration successful!');
+      setL(true);
+    
     } catch (err) {
       setMessage(err.response?.data?.message || 'Error');
     }
@@ -28,6 +32,7 @@ function Register() {
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Register</button>
       </form>
       {message && <p className="mt-4">{message}</p>}
+      {l && <Login></Login>}
     </div>
   );
 }
