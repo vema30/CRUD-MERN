@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // proxy handles localhost:5000
+  baseURL: 'https://crud-mern-egqy.onrender.com/api', // proxy handles localhost:5000
 });
 
 // Automatically attach token if available
